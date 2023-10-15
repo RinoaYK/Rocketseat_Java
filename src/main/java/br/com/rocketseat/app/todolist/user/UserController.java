@@ -13,13 +13,6 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    // String
-    // Integer
-    // Doublle 0.0000
-    // Float 0.00
-    // char
-    // Date
-    // void
 
     @Autowired
     private IUserRepository userRepository;
@@ -28,8 +21,7 @@ public class UserController {
     public ResponseEntity<?> create(@RequestBody UserModel userModel) {    
         var user = this.userRepository.findByUsername(userModel.getUsername());   
         
-        if(user != null) {
-            System.out.println("Usuário já existe!!");
+        if(user != null) {            
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já existe!!");
         }
 
@@ -40,8 +32,4 @@ public class UserController {
         var userCreated = this.userRepository.save(userModel);
         return ResponseEntity.status(HttpStatus.OK).body(userCreated);
     }
-
-    //     public void create(@RequestBody UserModel userModel) {
-    //     System.out.println(userModel.getName());     
-    // }
 }
